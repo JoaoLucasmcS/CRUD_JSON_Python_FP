@@ -1,0 +1,17 @@
+[
+    {
+        "nome": "Oxente",
+        "cozinha": "Regional",
+        "horario_funcionamento": "6:00 - 11:00"
+    },
+    {
+        "nome": "Temaki Xing Ling",
+        "cozinha": "Japonesa",
+        "horario_funcionamento": "17:00 - 22:00"
+    },
+    {
+        "nome": "La Casa Da Massa",
+        "cozinha": "Italiana",
+        "horario_funcionamento": "18:00 - 00:00"
+    }
+]
