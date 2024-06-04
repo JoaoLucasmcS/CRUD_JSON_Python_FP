@@ -10,6 +10,13 @@ def criar_reserva(nova_reserva):
     reservas.append(nova_reserva)
     escrever_json(CAMINHO_ARQUIVO, reservas)
 
+def buscar_reserva_por_nome(nome_reserva):
+    reservas = ler_json()
+    for reserva in reservas:
+        if reserva['nome'].lower() == nome_reserva:
+            return reserva
+    return None    
+
 def atualizar_reserva(nome, dados_atualizados):
     reservas = ler_json(CAMINHO_ARQUIVO)
     for reserva in reservas:

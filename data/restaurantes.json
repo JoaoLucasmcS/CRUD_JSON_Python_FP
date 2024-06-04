@@ -1,1 +1,7 @@
-[]
+[
+    {
+        "nome": "CesarComidas",
+        "cozinha": "Massas tecnol\u00f3gicas",
+        "horario_funcionamento": "19:00 = 00:00"
+    }
+]
