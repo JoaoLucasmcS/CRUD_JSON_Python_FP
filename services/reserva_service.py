@@ -5,10 +5,10 @@ from datetime import datetime, timedelta
 from prettytable import PrettyTable
 from config.settings import ARQUIVO_RESERVAS
 
-def adicionar_reserva(nome, data, horario, restaurante, email):
+def adicionar_reserva(nome, cpf, data, horario, pessoasPorMesa, restaurante, email):
     reservas = carregar_arquivo(ARQUIVO_RESERVAS)
 
-    nova_reserva = {'nome': nome, 'data': data, 'horario': horario, 'restaurante': restaurante, 'email': email}
+    nova_reserva = {'nome': nome, 'cpf': cpf, 'pessoasPorMesa': pessoasPorMesa, 'data': data, 'horario': horario, 'restaurante': restaurante, 'email': email}
     reservas.append(nova_reserva)
 
     salvar_arquivo(ARQUIVO_RESERVAS, reservas)
@@ -19,48 +19,51 @@ def adicionar_reserva(nome, data, horario, restaurante, email):
     corpo = f"Olá {nome},\n\nSua reserva foi confirmada para o dia {data} às {horario} no restaurante {restaurante}.\n\nObrigado!"
     enviar_email(email, assunto, corpo)
 
-def atualizar_reserva(nome_antigo, novo_nome, nova_data, novo_horario, novo_restaurante, novo_email):
+def atualizar_reserva(cpf, nova_data, novo_horario, pessoasPorMesa):
     reservas = carregar_arquivo(ARQUIVO_RESERVAS)
+    reserva_encontrada = False
 
     for reserva in reservas:
-        if reserva['nome'] == nome_antigo:
-            reserva['nome'] = novo_nome
+        if reserva['cpf'] == cpf:
             reserva['data'] = nova_data
             reserva['horario'] = novo_horario
-            reserva['restaurante'] = novo_restaurante
-            reserva['email'] = novo_email
-            salvar_arquivo(ARQUIVO_RESERVAS, reservas)
-            print(f"{Cor.VERDE}😙 RESERVA ATUALIZADA COM SUCESSO!{Cor.RESET}")
-            return
+            reserva['pessoasPorMesa'] = pessoasPorMesa
+            reserva_encontrada = True
+            break
 
-    print(f"{Cor.VERMELHO}😒 RESERVA NÃO ENCONTRADA.{Cor.RESET}")
+    if reserva_encontrada:
+        salvar_arquivo(ARQUIVO_RESERVAS, reservas)
+        print(f"{Cor.VERDE}😙 RESERVA ATUALIZADA COM SUCESSO!{Cor.RESET}")
+    else:
+        print(f"{Cor.VERMELHO}😒 RESERVA NÃO ENCONTRADA.{Cor.RESET}")
 
-def excluir_reserva(nome, data, horario, restaurante):
+def excluir_reserva(cpf, data, restaurante):
     reservas = carregar_arquivo(ARQUIVO_RESERVAS)
-
-    reservas = [reserva for reserva in reservas if not (
-        reserva['nome'] == nome and
-        reserva['data'] == data and
-        reserva['horario'] == horario and
-        reserva['restaurante'] == restaurante
-    )]
-
-    salvar_arquivo(ARQUIVO_RESERVAS, reservas)
-    print(f"{Cor.VERDE}😡 RESERVA EXCLUÍDA COM SUCESSO!{Cor.RESET}")
-
-def buscar_reserva(nome, data, horario, restaurante):
+    reserva_encontrada = False
+    
+    for reserva in reservas:
+        if ((reserva['cpf'] == cpf and reserva['data'] == data) and reserva['restaurante'] == restaurante):
+            reservas.remove(reserva)
+            salvar_arquivo(ARQUIVO_RESERVAS, reservas)  
+            print(f"{Cor.VERDE}😡 RESERVA EXCLUÍDA COM SUCESSO!{Cor.RESET}")
+            reserva_encontrada = True
+            
+    if not reserva_encontrada:
+        print(f"{Cor.VERMELHO}😒 RESERVA NÃO ENCONTRADA.{Cor.RESET}")
+    
+def buscar_reserva(cpf):
     reservas = carregar_arquivo(ARQUIVO_RESERVAS)
 
     encontrado = False
-
+    
+    tabela = PrettyTable(['Nome', 'CPF', 'pessoasPorMesa', 'Data', 'Horário', 'Restaurante', 'Email'])
+    
     for reserva in reservas:
-        if (reserva['nome'] == nome and
-            reserva['data'] == data and
-            reserva['horario'] == horario and
-            reserva['restaurante'] == restaurante):
-            print(f"NOME: {reserva['nome']}, DATA: {reserva['data']}, HORÁRIO: {reserva['horario']}, RESTAURANTE: {reserva['restaurante']}")
+        if (reserva['cpf'] == cpf):
+            tabela.add_row([reserva['nome'], reserva['cpf'], reserva['pessoasPorMesa'], reserva['data'], reserva['horario'], reserva['restaurante'], reserva['email']])
             encontrado = True
-
+    print(tabela)
+    
     if not encontrado:
         print(f"{Cor.VERMELHO}😒 NENHUMA RESERVA CADASTRADA.{Cor.RESET}")
 
@@ -68,12 +71,10 @@ def listar_reservas():
     reservas = carregar_arquivo(ARQUIVO_RESERVAS)
 
     if reservas:
-        print("=" * 50)
         print("LISTA DE RESERVAS:")
-        print("-" * 50)
-        tabela = PrettyTable(['Nome', 'Data', 'Horário', 'Restaurante', 'Email'])
+        tabela = PrettyTable(['Nome', 'CPF', 'pessoasPorMesa', 'Data', 'Horário', 'Restaurante', 'Email'])
         for reserva in reservas:
-            tabela.add_row([reserva['nome'], reserva['data'], reserva['horario'], reserva['restaurante'], reserva['email']])
+            tabela.add_row([reserva['nome'], reserva['cpf'], reserva['pessoasPorMesa'], reserva['data'], reserva['horario'], reserva['restaurante'], reserva['email']])
         print(tabela)
     else:
         print("😒 NENHUMA RESERVA ENCONTRADA.")

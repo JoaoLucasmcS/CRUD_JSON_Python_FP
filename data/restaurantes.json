@@ -1,60 +1,60 @@
 [
     {
-        "nome": "Sakura Garden",
+        "nome": "SAKURA GARDEN",
         "cozinha": "Japonesa",
         "horario": "18:00 as 22:00",
         "avaliacao": "4.3"
     },
     {
-        "nome": "La Bella Italia",
+        "nome": "LA BELLA ITALIA",
         "cozinha": "Italiana",
         "horario": "12:00 as 23:00",
         "avaliacao": "4.7"
     },
     {
-        "nome": "El Mariachi",
+        "nome": "EL MARIACHI",
         "cozinha": "Mexicana",
         "horario": "11:00 as 21:00",
         "avaliacao": "4.2"
     },
     {
-        "nome": "Burger Haven",
+        "nome": "BURGER HAVEN",
         "cozinha": "Americana",
         "horario": "10:00 as 22:00",
         "avaliacao": "4.0"
     },
     {
-        "nome": "Curry Palace",
+        "nome": "CURRY PALACE",
         "cozinha": "Indiana",
         "horario": "17:00 as 23:00",
         "avaliacao": "4.6"
     },
     {
-        "nome": "Le Gourmet",
+        "nome": "LE GOURMET",
         "cozinha": "Francesa",
         "horario": "18:00 as 23:00",
         "avaliacao": "4.8"
     },
     {
-        "nome": "Green Garden",
+        "nome": "GREEN GARDEN",
         "cozinha": "Vegetariana",
         "horario": "12:00 as 21:00",
         "avaliacao": "4.1"
     },
     {
-        "nome": "Taste of Thailand",
+        "nome": "TASTE OF THAILAND",
         "cozinha": "Tailandesa",
-        "horario": "18:00 \u00c3\u00a0s 22:30",
+        "horario": "18:00 às 22:30",
         "avaliacao": "4.4"
     },
     {
-        "nome": "Mediterranean Delights",
-        "cozinha": "Mediterr\u00c3\u00a2nea",
+        "nome": "MEDITERRANEAN DELIGHTS",
+        "cozinha": "Mediterrânea",
         "horario": "12:00 as 22:00",
         "avaliacao": "4.5"
     },
     {
-        "nome": "Temaki XingLing",
+        "nome": "TEMAKI XINGLING",
         "cozinha": "Japonesa",
         "horario": "19:00 as 23:30",
         "avaliacao": "2.9"
