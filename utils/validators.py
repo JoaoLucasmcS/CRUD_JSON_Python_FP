@@ -17,7 +17,7 @@ def validar_data(data):
         return False
 
 def validar_cpf(cpf):
-    regex = r'^\d{9}$'
+    regex = r'^\d{11}$'
     return re.match(regex, cpf)
 
 def validar_horario(horario):

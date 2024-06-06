@@ -44,12 +44,12 @@
     {
         "nome": "TASTE OF THAILAND",
         "cozinha": "Tailandesa",
-        "horario": "18:00 às 22:30",
+        "horario": "18:00 as 22:30",
         "avaliacao": "4.4"
     },
     {
         "nome": "MEDITERRANEAN DELIGHTS",
-        "cozinha": "Mediterrânea",
+        "cozinha": "Mediterranea",
         "horario": "12:00 as 22:00",
         "avaliacao": "4.5"
     },

@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "nome": "GABRIEL NOGBOY",
+        "cpf": "12345678901",
+        "pessoasPorMesa": 7,
+        "data": "13/06/2024",
+        "horario": "13:00",
+        "restaurante": "GREEN GARDEN",
+        "email": "nogboy@gmail.com"
+    }
+]
